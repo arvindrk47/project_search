@@ -1,0 +1,17 @@
+
+h1{
+    color: blue;
+
+
+}
+
+p{
+    color: blue;
+
+}
+.logo {
+    max-height: 50px; /* Adjust the max-height as needed */
+    max-width: 100%; /* This makes the image responsive within its container */
+    display: block; /* Ensures that the max-width works correctly */
+    margin: 0 auto; /* Centers the image horizontally within the navbar */
+}
