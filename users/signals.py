@@ -8,6 +8,8 @@ def profileUpdated(sender, instance, created, **kwargs):
     print("Profile Saved!")
     print("instance:", instance)
     print('CREATED:', created)
+
+    
 @receiver(post_delete, sender=Profile)
 def deleteUser(sender, instance, **kwargs):
     user = instance.user

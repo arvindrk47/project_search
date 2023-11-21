@@ -6,7 +6,7 @@
 <h1>Edit Account</h1>
 
 
-<form method="POST"  action="{% url 'edit-account' %}">
+<form method="POST"  action="{% url 'edit-account' %}", enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
 

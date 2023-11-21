@@ -48,6 +48,6 @@ def deleteProject(request, pk):
     project = Project.objects.get(id=pk)
     if request.method == 'POST':
         project.delete()
-        return redirect('project')
+        return redirect('projects')
     context = {'object':project}
     return render(request, 'projects/delete_template.html', context)
