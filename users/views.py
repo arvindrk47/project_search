@@ -5,7 +5,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm, ProfileForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 
 # Create your views here.
 def profiles(request):
@@ -78,7 +78,7 @@ def registerUser(request):
             user.save()
             messages.success(request, "User account was created!")
             login(request,user)
-            return redirect('profiles')
+            return redirect('edit-account')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -118,3 +118,20 @@ def editAccount(request):
 
     context = {'form': form}
     return render(request, 'users/profile_form.html', context)
+
+@login_required(login_url='login')
+def createSkill(request):
+    form = SkillForm()
+    profile = request.user.profile
+    if request.method == 'POST':
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner = profile
+            skill.save()
+            return redirect('account')
+    context = {
+        'form':form
+
+    }
+    return render(request, 'users/skill_form.html', context)
