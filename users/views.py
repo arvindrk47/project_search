@@ -128,6 +128,7 @@ def createSkill(request):
         if form.is_valid():
             skill = form.save(commit=False)
             skill.owner = profile
+            messages.success(request, 'New Skill added')
             skill.save()
             return redirect('account')
     context = {
@@ -148,6 +149,7 @@ def updateSkill(request,pk):
         form = SkillForm(request.POST, instance=skill)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Skill is updated')
             return redirect('account')
     context = {
         'form':form
@@ -167,6 +169,8 @@ def createSkill(request):
             skill = form.save(commit=False)
             skill.owner = profile
             skill.save()
+            messages.success(request, 'New Skill added')
+
             return redirect('account')
     context = {
         'form':form
